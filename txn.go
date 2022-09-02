@@ -296,6 +296,8 @@ func (txn *Txn) Insert(table string, obj interface{}) error {
 			primaryKey: idVal,
 		})
 	}
+
+	trackPointer(txn.db, table, obj)
 	return nil
 }
 
@@ -371,6 +373,8 @@ func (txn *Txn) Delete(table string, obj interface{}) error {
 			primaryKey: idVal,
 		})
 	}
+
+	forgetPointer(txn.db, table, obj)
 	return nil
 }
 
